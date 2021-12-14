@@ -23,7 +23,7 @@ const resolutionSchema = new mongoose.Schema({
 });
 
 // Create a model for items in the museum.
-const Resolution = mongoose.model('Item', resolutionSchema);
+const Resolution = mongoose.model('Resolution', resolutionSchema);
 
 // Create a new item in the museum: takes a title and a path to an image.
 app.post('/api/resolutions', async (req, res) => {
