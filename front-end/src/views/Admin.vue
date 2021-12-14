@@ -3,25 +3,21 @@
   <h1>The Admin Page!</h1>
     <div class="heading">
       <div class="circle">1</div>
-      <h2>Add an Item</h2>
+      <h2>Add an Resolution</h2>
     </div>
     <div class="add">
       <div class="form">
         <input v-model="title" placeholder="Title">
-        <p></p>
-        <input type="file" name="photo" @change="fileChanged">
-        <p></p>
         <textarea v-model="description" cols=50 rows=4 placeholder="Description" ></textarea>
-        <button style="display: block" @click="upload">Upload</button>
+        <button style="display: block" @click="upload">Submit</button>
       </div>
       <div class="upload" v-if="addItem">
-        <h2>{{addItem.title}}</h2>
-        <img :src="addItem.path" />
+        <h2>{{addItem.name}}</h2>
         <p>{{addItem.text}}</p>
       </div>
       </div><div class="heading">
       <div class="circle">2</div>
-      <h2>Edit/Delete an Item</h2>
+      <h2>Edit/Delete a Resolution</h2>
     </div>
     <div class="edit">
       <div class="form">
@@ -75,11 +71,8 @@ export default {
       this.file = event.target.files[0]
     },
     async upload() {
-        const formData = new FormData();
-        formData.append('photo', this.file, this.file.name)
-        let r1 = await axios.post('/api/photos', formData);
         let r2 = await axios.post('/api/items', {
-          title: this.title,
+          name: this.title,
           path: r1.data.path,
           text: this.description,
         });
@@ -106,7 +99,7 @@ export default {
     },
     async editItem(item) {
         await axios.put("/api/items/" + item._id, {
-          title: this.findItem.title,
+          name: this.findItem.name,
           text: this.findItem.text,
         });
         this.findItem = null;
