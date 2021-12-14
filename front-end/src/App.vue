@@ -1,24 +1,20 @@
 <template>
 <div id="app">
-  <div class="header">
-    <router-link to="/">
-      <div class="logo">
-        <img src="/ordinary.png">
-      </div>
-    </router-link>
-    <div class="title">
-      <h1>Museum of Ordinary Objects</h1>
-    </div>
-  </div>
+  <NavigationBar/>
   <div class="content">
     <router-view />
   </div>
-  <div class="footer">
-    <router-link class = "link" to="/admin">Admin</router-link>
-    <a class = "link" href="https://github.com/BYUCS260/museum-zoblod">Github</a>
-  </div>
+  <Footer/>
 </div>
 </template>
+
+<script>
+import NavigationBar from '../src/components/NavigationBar.vue'
+import Footer from '../src/components/Footer.vue'
+export default {
+  components: { NavigationBar, Footer}
+}
+</script>
 
 <style>
 html {
